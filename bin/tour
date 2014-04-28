@@ -3,4 +3,34 @@
 require 'tour'
 
 client = Tour::Client.new
-client.start
+
+
+options = {}
+
+opt_parser = OptionParser.new do |opt|
+  opt.banner = ""
+  opt.separator "Usage:"
+  opt.separator "    tour COMMAND [OPTIONS]"
+  opt.separator ""
+  opt.separator "Commands:"
+  opt.separator "    login           Authenticate with the server"
+  opt.separator "    help            This menu"
+  opt.separator ""
+  opt.separator "Options:"
+
+  opt.on("-h", "--help", "Display help menu") do
+    puts opt_parser
+  end
+  opt.on("-v", "--version", "Display build version") do
+    puts "tour CLI (#{Tour::VERSION})"
+  end
+end
+
+opt_parser.parse!
+
+case ARGV[0]
+  when "login"
+    client.login
+  else
+    puts "invalid or no option specified"
+end
