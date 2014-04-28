@@ -1,5 +1,9 @@
 require "tour/version"
 
 module Tour
-  # Your code goes here...
+  class Client
+    def start
+      
+    end
+  end
 end
